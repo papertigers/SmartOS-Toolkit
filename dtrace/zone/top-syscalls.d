@@ -17,7 +17,6 @@ BEGIN
 }
 
 syscall:::entry
-/execname == "node"/
 {
 	self->start = timestamp;
 }
