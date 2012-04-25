@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+############################
+#
+# If ran from the global zone on smartos this will show the memory usage for all "joyent" zones.
+# It will also show the max_locked_memory for "kvm" zones.
+#
+# Running this in a none GZ, will show you the usage of that particular zone.
+# I have this script in my bashrc so I can easily type memusage
+#
+# Author: Michael Zeller - mike@mikezeller.net
+# Created: 04/24/12
+#
+############################
+
+memusage() {
+  kstat -p | grep physicalmem_zone | egrep '(usage|value)' | awk 'BEGIN { FS=":" } { split($4,a," "); if (a[1] == "usage" ) {print("Zone: " $2, " Mem Used: " a[2] / 1048576 )} if (a[1] == "value" ) {print("Zone: " $2, " Mem Avail: " a[2] / 1048576 )}}'
+}
+
+memusage
