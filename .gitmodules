@@ -1,0 +1,3 @@
+[submodule "apps/gz/arcstat"]
+	path = apps/gz/arcstat
+	url = https://github.com/mharsch/arcstat.git
